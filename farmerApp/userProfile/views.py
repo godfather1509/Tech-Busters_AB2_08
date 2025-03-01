@@ -10,7 +10,6 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.models import User
 from rest_framework.viewsets import ModelViewSet
 from .serializer import RegisterUser, LoginSerializer
-
 # Create your views here.
 
 
