@@ -11,7 +11,7 @@ class Product_listing(models.Model):
     product_name=models.CharField(max_length=100)
     unit_price=models.IntegerField()
     quantity=models.CharField(max_length=100)
-    unit_quantity=models.CharField(max_length=100,choices=WEIGHT_UNITS)
+    unit=models.CharField(max_length=100,choices=WEIGHT_UNITS)
     harvest_date=models.DateField()
     image=models.ImageField(upload_to='farmerProfile/')
     description=models.TextField(default="")

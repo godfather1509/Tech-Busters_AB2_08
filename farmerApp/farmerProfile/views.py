@@ -9,7 +9,8 @@ from rest_framework.decorators import permission_classes
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.models import User
 from rest_framework.viewsets import ModelViewSet
-from .serializer import RegisterUser, LoginSerializer
+from .serializer import RegisterUser, LoginSerializer,Product_Serializer
+from .models import Product_listing
 
 # Create your views here.
 
@@ -45,3 +46,7 @@ class Login(APIView):
                     "access": str(refresh.access_token),
                 }
             )
+
+class ProductList(ModelViewSet):
+    queryset=Product_listing.objects.all()
+    serializer_class=Product_Serializer

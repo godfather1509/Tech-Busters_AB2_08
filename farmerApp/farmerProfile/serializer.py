@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
+from .models import Product_listing
 
 class RegisterUser(ModelSerializer):
     email = serializers.EmailField(required=True)
@@ -30,3 +31,8 @@ class RegisterUser(ModelSerializer):
 class LoginSerializer(serializers.Serializer):
     email=serializers.EmailField()
     password=serializers.CharField()
+
+class Product_Serializer(ModelSerializer):
+     class Meta:
+          model =Product_listing
+          fields='__all__'
