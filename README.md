@@ -1,3 +1,3 @@
-Project Name: Farm Fresh
+Project Name: Direct Farmer-To-Consumer Marketplace
 
 Problem Statement ID: 8
