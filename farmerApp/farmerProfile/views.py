@@ -23,6 +23,8 @@ class Login(APIView):
 
     def post(self, request):
         data = request.data
+        if not data:
+            return Response({"message": "Invalid Credentials", "data": {}})
         serializer = LoginSerializer(data=data)
         if serializer.is_valid():
             email = serializer.data["email"]
