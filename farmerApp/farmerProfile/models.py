@@ -21,7 +21,7 @@ class Product_listing(models.Model):
         return self.product_name
     
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE,related_name="profile")
     address = models.TextField(max_length=255, default="")
     zip_code=models.IntegerField()
     phone_no=models.CharField(max_length=15,default="")

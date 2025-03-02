@@ -13,20 +13,20 @@ admin.site.register(Product_listing,Product)
 class UserProfileInline(admin.StackedInline):
     model = UserProfile
     can_delete = False
-    verbose_name_plural = "User Profile"
+    verbose_name_plural = "Farmer Profile"
 
 # Extend UserAdmin to include UserProfile
 class CustomUserAdmin(UserAdmin):
     inlines = (UserProfileInline,)
 
     def address(self, obj):
-        return obj.userprofile.address
+        return obj.profile.address
 
     def phone_no(self, obj):
-        return obj.userprofile.phone_no
+        return obj.profile.phone_no
     
     def zip_code(self,obj):
-        return obj.userprofile.zip_code
+        return obj.profile.zip_code
 
     list_display=('username','email','first_name','phone_no','address','zip_code')
 

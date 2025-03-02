@@ -53,3 +53,10 @@ class Search(APIView):
             queryset=queryset.filter(product_name__startswith=search)
         serializer=Search_Product(queryset,many=True)
         return Response({'status':200,'data':serializer.data})
+
+class Place_Order(APIView):
+    permission_classes=[IsAuthenticated]
+    def post(self,request):
+        queryset=Product_listing.objects.all()
+        data=request.data
+        

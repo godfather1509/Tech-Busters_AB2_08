@@ -14,10 +14,9 @@ class RegisterUser(ModelSerializer):
         fields=['phone_no','first_name','email','password','address','zip_code']
         extra_kwargs = {'password': {'write_only': True}}
     def validate(self, data):
-            if User.objects.filter(username=data['phone_no']).exists():
+            if UserProfile.objects.filter(phone_no=data['phone_no']).exists():
                 raise serializers.ValidationError({'phone_no': 'This phone number is already registered.'})
-            if data['email']:
-                if User.objects.filter(email=data['email']).exists():
+            if User.objects.filter(email=data['email']).exists():
                     raise serializers.ValidationError('email is taken')
             return data
     def create(self, validated_data):
