@@ -10,6 +10,10 @@ class BuyerProfile(models.Model):
     def __str__(self):
         return self.user.first_name
     
+class BuyerUser(User):
+    class Meta:
+        proxy = True
+        
 class Order(models.Model):
     user = models.ForeignKey(BuyerProfile, on_delete=models.CASCADE)
     order_date = models.DateTimeField(auto_now_add=True)

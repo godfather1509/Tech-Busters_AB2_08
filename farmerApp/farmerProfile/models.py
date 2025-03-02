@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+class FarmerUser(User):
+    class Meta:
+        proxy = True
+
 class Product_listing(models.Model):
 
     WEIGHT_UNITS=[

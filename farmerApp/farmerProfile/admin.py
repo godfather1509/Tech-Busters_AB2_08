@@ -2,34 +2,21 @@ from django.contrib import admin
 from .models import Product_listing
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
-from .models import UserProfile,Product_listing
+from .models import UserProfile,Product_listing,FarmerUser
 
 class Product(admin.ModelAdmin):
     list_display=('product_name',"unit_price","quantity","unit","harvest_date")
 admin.site.register(Product_listing,Product)
 # Register your models here.
 
-# Inline Admin for UserProfile
 class UserProfileInline(admin.StackedInline):
     model = UserProfile
     can_delete = False
     verbose_name_plural = "Farmer Profile"
 
-# Extend UserAdmin to include UserProfile
-class CustomUserAdmin(UserAdmin):
-    inlines = (UserProfileInline,)
+class FarmerAdmin(UserAdmin):
+    inlines = [UserProfileInline]
+    list_display = ('username', 'email', 'first_name')
 
-    def address(self, obj):
-        return obj.profile.address
+admin.site.register(FarmerUser, FarmerAdmin)
 
-    def phone_no(self, obj):
-        return obj.profile.phone_no
-    
-    def zip_code(self,obj):
-        return obj.profile.zip_code
-
-    list_display=('username','email','first_name','phone_no','address','zip_code')
-
-# Unregister default User admin and register the new one
-admin.site.unregister(User)
-admin.site.register(User, CustomUserAdmin)
