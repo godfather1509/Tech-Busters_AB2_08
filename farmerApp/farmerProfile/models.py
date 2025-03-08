@@ -1,10 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
-
-class FarmerUser(User):
-    class Meta:
-        proxy = True
-
+from registration.models import CustomUser
 class Product_listing(models.Model):
 
     WEIGHT_UNITS=[
@@ -12,7 +7,7 @@ class Product_listing(models.Model):
         ("Tons","Tons"),
         ("Qntls","Quintals")
     ]
-
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="farmer_product")
     product_name=models.CharField(max_length=100)
     unit_price=models.IntegerField()
     quantity=models.CharField(max_length=100)
@@ -23,12 +18,3 @@ class Product_listing(models.Model):
 
     def __str__(self):
         return self.product_name
-    
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE,related_name="profile")
-    address = models.TextField(max_length=255, default="")
-    zip_code=models.IntegerField()
-    phone_no=models.CharField(max_length=15,default="")
-
-    def __str__(self):
-        return self.user.first_name

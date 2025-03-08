@@ -20,7 +20,6 @@ SECRET_KEY = 'django-insecure-^!k580u(9p)4bxpvi-frpb0#a$z=ym0gqzb&13i-o9&y)mu%%%
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -31,10 +30,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'farmerProfile',
+    'registration',
     'userProfile',
     'rest_framework',
     'rest_framework.authtoken',
 ]
+
+AUTH_USER_MODEL = 'registration.CustomUser'
 
 REST_FRAMEWORK = {
         'DEFAULT_AUTHENTICATION_CLASSES': (
