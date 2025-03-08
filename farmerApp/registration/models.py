@@ -48,3 +48,17 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.first_name
     # Add custom fields if needed
+
+
+class Register(models.Model):
+    ROLE = [
+        ("Buyer", "Buyer"),
+        ("Farmer", "Farmer"),
+    ]
+    phone_no=models.CharField(max_length=100)
+    first_name=models.CharField(max_length=100)
+    email=models.EmailField(unique=True)
+    password=models.CharField(max_length=128),
+    address = models.TextField(max_length=255)
+    zip_code = models.IntegerField(null=True,blank=True)
+    role=models.CharField(max_length=100,choices=ROLE)

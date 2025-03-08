@@ -1,10 +1,12 @@
+from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.viewsets import ModelViewSet
 from .serializer import RegisterUser, LoginSerializer
-from .models import CustomUser
+from .models import CustomUser,Register
+from .forms import RegistrationForm
 
 # Create your views here.
 
@@ -37,3 +39,15 @@ class Login(APIView):
             )
         return Response({'data':serializer.errors})
         
+
+def register(request):
+    roles = Register.ROLE
+    if request.method=='POST':
+        form=RegistrationForm(request.POST) # initializes the form with the data from the POST request.
+        # here 'form' variable holds the data sent by the user
+        if form.is_valid():
+            register_user = form.save() 
+    else:
+        form=RegistrationForm() # initializes an empty form to display for non-POST requests.
+
+    return render(request,'contact.html',{'form':form,'roles':roles})

@@ -18,7 +18,6 @@ SECRET_KEY = 'django-insecure-^!k580u(9p)4bxpvi-frpb0#a$z=ym0gqzb&13i-o9&y)mu%%%
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ASGI_APPLICATION = "farmerApp.asgi.application"
 
 ALLOWED_HOSTS = []
 # Application definition
